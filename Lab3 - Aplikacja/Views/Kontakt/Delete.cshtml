@@ -1,5 +1,12 @@
-﻿@*
+﻿@model Kontakt
+@*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
 @{
 }
+<form asp-action="Delete" method="post">
+    <input asp-for="Id" />
+    <p>Czy na pewno chcesz usunąć swoje dane?</p>
+    <button type="submit">Tak</button>
+    <a asp-controller="Kontakt" asp-action="Index">Nie</a>
+</form>
