@@ -4,9 +4,10 @@
 *@
 @{
 }
-<form asp-action="Delete" method="post">
-    <input asp-for="Id" />
-    <p>Czy na pewno chcesz usunąć swoje dane?</p>
-    <button type="submit">Tak</button>
-    <a asp-controller="Kontakt" asp-action="Index">Nie</a>
+<h3>Czy na pewno chcesz usunąć ten kontakt?</h3>
+
+<form asp-action="Delete" method="get">
+    <input type="hidden" name="id" value="@Model.Id" />
+    <input type="submit" value="Usuń" class="btn btn-danger" />
+    <a asp-action="Index">Anuluj</a>
 </form>

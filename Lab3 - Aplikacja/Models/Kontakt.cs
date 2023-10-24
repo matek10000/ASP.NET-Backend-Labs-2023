@@ -10,6 +10,7 @@ namespace Lab3___Aplikacja.Models
 
         [Required(ErrorMessage = "Sprawdź poprawność imienia!")]
         [StringLength(maximumLength: 100, ErrorMessage = "Twoje imie jest za długie!")]
+        [Display(Name = "Imię:")]
         public string Nazwa { get; set; }
 
         [Required(ErrorMessage = "Sprawdź poprawność E-maila!")]

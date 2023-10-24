@@ -50,13 +50,22 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            return View(_kontakty[id]);
+            if (_kontakty.ContainsKey(id))
+            {
+                return View(_kontakty[id]);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            return View(_kontakty[id]);
+            if (_kontakty.ContainsKey(id))
+            {
+                _kontakty.Remove(id);
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
         }
 
     }
