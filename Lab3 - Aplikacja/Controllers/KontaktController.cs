@@ -1,12 +1,23 @@
 ﻿using Lab3___Aplikacja.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace Lab3___Aplikacja.Controllers
 {
     public class KontaktController : Controller
     {
-        static Dictionary<int, Kontakt> _kontakty = new Dictionary<int, Kontakt>();
+        static List<Kontakt> _kontakty = new List<Kontakt>();
         static int index = 1;
+
+        private readonly IContactService _contactService;
+
+        public KontaktController(IContactService contactService)
+        {
+            _contactService = contactService;
+        }
+
         public IActionResult Index()
         {
             return View(_kontakty);
@@ -23,17 +34,24 @@ namespace Lab3___Aplikacja.Controllers
         {
             if (ModelState.IsValid)
             {
-                model.Id = index++;
-                _kontakty.Add(model.Id, model);
+                _contactService.Add(model);
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                return View(model);
+            }
         }
 
         [HttpGet]
         public IActionResult Update(int id)
         {
-            return View(_kontakty[id]);
+            var kontakt = _kontakty.FirstOrDefault(k => k.Id == id);
+            if (kontakt != null)
+            {
+                return View(kontakt);
+            }
+            return RedirectToAction("Index");
         }
 
         [HttpPost]
@@ -41,18 +59,27 @@ namespace Lab3___Aplikacja.Controllers
         {
             if (ModelState.IsValid)
             {
-                _kontakty[model.Id] = model;
-                return RedirectToAction("Index");
+                var kontakt = _kontakty.FirstOrDefault(k => k.Id == model.Id);
+                if (kontakt != null)
+                {
+                    kontakt.Nazwa = model.Nazwa;
+                    kontakt.Email = model.Email;
+                    kontakt.Telefon = model.Telefon;
+                    kontakt.Dataur = model.Dataur; 
+                    kontakt.Priority = model.Priority; 
+                    return RedirectToAction("Index");
+                }
             }
-            return View();
+            return View(model);
         }
 
         [HttpGet]
         public IActionResult Details(int id)
         {
-            if (_kontakty.ContainsKey(id))
+            var kontakt = _kontakty.FirstOrDefault(k => k.Id == id);
+            if (kontakt != null)
             {
-                return View(_kontakty[id]);
+                return View(kontakt);
             }
             return RedirectToAction("Index");
         }
@@ -60,13 +87,13 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            if (_kontakty.ContainsKey(id))
+            var kontakt = _kontakty.FirstOrDefault(k => k.Id == id);
+            if (kontakt != null)
             {
-                _kontakty.Remove(id);
+                _kontakty.Remove(kontakt);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
         }
-
     }
 }

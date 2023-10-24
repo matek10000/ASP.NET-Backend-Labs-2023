@@ -11,26 +11,32 @@
     <div class="mb-3">
         <label asp-for="Nazwa">Imię</label>
         <input class="form-control" asp-for="Nazwa" />
-        <span class="tet-danger" asp-validation-for="Nazwa"></span>
+        <span class="text-danger" asp-validation-for="Nazwa"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Email">E-mail</label>
         <input class="form-control" asp-for="Email" />
-        <span class="tet-danger" asp-validation-for="Email"></span>
+        <span class="text-danger" asp-validation-for="Email"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Telefon">Numer telefonu</label>
         <input class="form-control" asp-for="Telefon" />
-        <span class="tet-danger" asp-validation-for="Telefon"></span>
+        <span class="text-danger" asp-validation-for="Telefon"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Dataur">Data urodzenia</label>
         <input class="form-control" asp-for="Dataur" />
-        <span class="tet-danger" asp-validation-for="Dataur"></span>
+        <span class="text-danger" asp-validation-for="Dataur"></span>
     </div>
-
+    <div>
+        <label asp-for="Priority">Kategoria</label>
+        <div>
+            <span asp-validation-for="Priority" class="text-danger"></span>
+        </div>
+        <select class="form-control" asp-for="Priority" asp-items="@Html.GetEnumSelectList<Priority>()"></select>
+    </div>
     <button type="submit">Wyslij</button>
 </form>

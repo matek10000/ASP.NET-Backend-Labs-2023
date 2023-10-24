@@ -1,52 +1,43 @@
-﻿@model Dictionary<int, Kontakt>
+﻿@model List<Kontakt>
 
-@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
 <div>
     <center>
-    <a class="btn btn-primary" asp-action="Create" asp-controller="Kontakt">Utwórz kontakt</a>
+        <a class="btn btn-primary" asp-action="Create" asp-controller="Kontakt">Utwórz kontakt</a>
     </center>
 </div>
 <br />
 <h1>Lista kontaktów</h1>
 <div>
     <table class="table">
-<tr>
-        <th>
-            Nazwa
-        </th>
-        <th>
-            Email
-        </th>
-    </tr>
-    @foreach(var item in @Model)
-    {
         <tr>
-            <td>
-                @item.Value.Nazwa
-            </td>
-            <td>
-                @item.Value.Email
-            </td>
-        <td>
-                <a class="btn btn-outline-primary" 
-                    asp-action="Update" 
-                    asp-controller="Kontakt" 
-                    asp-route-id=@item.Value.Id>Edytuj</a>
-                <a class="btn btn-outline-info" 
-                    asp-action="Details" 
-                    asp-controller="Kontakt" 
-                    asp-route-id=@item.Value.Id>Szczegóły</a>
-                <a class="btn btn-outline-danger" 
-                    asp-action="Delete" 
-                    asp-controller="Kontakt" 
-                    asp-route-id=@item.Value.Id>Usuń</a>
-            </td>
+            <th>
+                @Html.DisplayNameFor(i => Model[0].Nazwa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(i => Model[0].Email)
+            </th>
+            <th>
+                @Html.DisplayNameFor(i => Model[0].Priority)
+            </th>
         </tr>
-    }
+        @foreach (var item in @Model)
+        {
+            <tr>
+                <td>
+                    @item.Nazwa
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Priority.GetDisplayName()
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary" asp-action="Update" asp-controller="Kontakt" asp-route-id="@item.Id">Edytuj</a>
+                    <a class="btn btn-outline-info" asp-action="Details" asp-controller="Kontakt" asp-route-id="@item.Id">Szczegóły</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-controller="Kontakt" asp-route-id="@item.Id">Usuń</a>
+                </td>
+            </tr>
+        }
     </table>
-
 </div>

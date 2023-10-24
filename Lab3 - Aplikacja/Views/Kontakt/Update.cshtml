@@ -31,6 +31,13 @@
         <input class="form-control" asp-for="Dataur" />
         <span class="tet-danger" asp-validation-for="Dataur"></span>
     </div>
+    <div>
+        <label asp-for="Priority">Kategoria</label>
+        <div>
+            <span asp-validation-for="Priority" class="text-danger"></span>
+        </div>
+        <select class="form-control" asp-for="Priority" asp-items="@Html.GetEnumSelectList<Priority>()"></select>
+    </div>
 
     <button type="submit">Zapisz</button>
 </form>
