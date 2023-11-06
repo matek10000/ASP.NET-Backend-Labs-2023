@@ -1,0 +1,21 @@
+﻿@model Product
+
+<h1>Szczegóły produktu</h1>
+
+<div>
+    <dl>
+        <dt>Nazwa:</dt>
+        <dd>@Model.Nazwa</dd>
+        <dt>Cena:</dt>
+        <dd>@Model.Cena</dd>
+        <dt>Producent:</dt>
+        <dd>@Model.Producent</dd>
+        <dt>Data produkcji:</dt>
+        <dd>@Model.DataProdukcji</dd>
+        <dt>Opis:</dt>
+        <dd>@Model.Opis</dd>
+    </dl>
+</div>
+<p>
+    <a asp-action="Index">Powrót do listy produktów</a>
+</p>

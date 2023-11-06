@@ -34,7 +34,9 @@ namespace Lab3___Aplikacja.Controllers
         {
             if (ModelState.IsValid)
             {
-                _contactService.Add(model);
+                model.Id = index++;
+                _kontakty.Add(model);
+
                 return RedirectToAction("Index");
             }
             else
