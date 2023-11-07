@@ -11,6 +11,11 @@
             return item.Id;
         }
 
+        public void Update(Kontakt item)
+        {
+            _items[item.Id] = item;
+        }
+
         public void Delete(int id)
         {
             _items.Remove(id);
@@ -24,11 +29,6 @@
         public Kontakt? FindById(int id)
         {
             return _items[id];
-        }
-
-        public void Update(Kontakt item)
-        {
-            _items[item.Id] = item;
         }
     }
 }
