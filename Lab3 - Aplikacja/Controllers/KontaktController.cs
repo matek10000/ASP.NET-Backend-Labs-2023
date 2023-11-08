@@ -6,6 +6,8 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Sqlite;
+using Data;
+using Data.Entities;
 
 namespace Lab3___Aplikacja.Controllers
 {
@@ -14,32 +16,32 @@ namespace Lab3___Aplikacja.Controllers
         static List<Kontakt> _kontakty = new List<Kontakt>();
         static int index = 1;
 
-        private readonly IContactService _contactService;
+        private readonly AppDbContext _contactService;
 
-        public KontaktController(IContactService contactService)
+        public KontaktController(AppDbContext context)
         {
-            _contactService = contactService;
+            _contactService = context;
         }
 
         public IActionResult Index()
         {
-            return View(_kontakty);
+            var kontakty = _contactService.Contacts.ToList();
+            return View(kontakty);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View();
+            return View(new ContactEntity()); // Tworzenie nowej instancji modelu Kontakt
         }
 
         [HttpPost]
-        public IActionResult Create(Kontakt model)
+        public IActionResult Create(ContactEntity model)
         {
             if (ModelState.IsValid)
             {
-                model.Id = index++;
-                _kontakty.Add(model);
-
+                _contactService.Contacts.Add(model); // Dodanie modelu do bazy danych
+                _contactService.SaveChanges(); // Zapisanie zmian w bazie danych
                 return RedirectToAction("Index");
             }
             else
@@ -51,7 +53,7 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var kontakt = _kontakty.FirstOrDefault(k => k.Id == id);
+            var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == id);
             if (kontakt != null)
             {
                 return View(kontakt);
@@ -60,28 +62,30 @@ namespace Lab3___Aplikacja.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(Kontakt model)
+        public IActionResult Update(ContactEntity model)
         {
             if (ModelState.IsValid)
             {
-                var kontakt = _kontakty.FirstOrDefault(k => k.Id == model.Id);
+                var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == model.ContactId);
                 if (kontakt != null)
                 {
-                    kontakt.Nazwa = model.Nazwa;
+                    kontakt.Name = model.Name;
                     kontakt.Email = model.Email;
-                    kontakt.Telefon = model.Telefon;
-                    kontakt.Dataur = model.Dataur; 
-                    kontakt.Priority = model.Priority; 
-                    return RedirectToAction("Index");
+                    kontakt.Phone = model.Phone;
+                    kontakt.Birth = model.Birth;
+                    _contactService.SaveChanges(); // Zapisz zmiany w bazie danych
+                    return RedirectToAction("Index"); // Przekierowanie po zaktualizowaniu danych
                 }
             }
             return View(model);
         }
 
+
+
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var kontakt = _kontakty.FirstOrDefault(k => k.Id == id);
+            var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == id);
             if (kontakt != null)
             {
                 return View(kontakt);
@@ -92,13 +96,15 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var kontakt = _kontakty.FirstOrDefault(k => k.Id == id);
+            var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == id);
             if (kontakt != null)
             {
-                _kontakty.Remove(kontakt);
+                _contactService.Contacts.Remove(kontakt);
+                _contactService.SaveChanges(); // Zapisz zmiany w bazie danych
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");
         }
+
     }
 }

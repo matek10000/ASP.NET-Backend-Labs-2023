@@ -1,4 +1,5 @@
-﻿@model Kontakt
+﻿@model Data.Entities.ContactEntity
+
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 *@
@@ -7,15 +8,13 @@
 <h2>Szczegóły</h2>
 <dl>
     <dt>ID</dt>
-    <dd>@Model.Id</dd>
+    <dd>@Model.ContactId</dd>
     <dt>Nazwa</dt>
-    <dd>@Model.Nazwa</dd>
+    <dd>@Model.Name</dd>
     <dt>Data urodzenia</dt>
-    <dd>@Model.Dataur</dd>
+    <dd>@Model.Birth</dd>
     <dt>E-mail</dt>
     <dd>@Model.Email</dd>
     <dt>Telefon</dt>
-    <dd>@Model.Telefon</dd>
-    <dt>Priorytet</dt>
-    <dt>@Model.Priority</dt>
+    <dd>@Model.Phone</dd>
 </dl>

@@ -1,4 +1,5 @@
-﻿@model Kontakt
+﻿@model Data.Entities.ContactEntity
+
 
 @*
     For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -9,35 +10,27 @@
 <form asp-controller="Kontakt" asp-action="Update" method="post">
     @*<div asp-validation-summary="All"></div>*@
     <div class="mb-3">
-        <label asp-for="Nazwa">Imię</label>
-        <input class="form-control" asp-for="Nazwa" />
-        <span class="tet-danger" asp-validation-for="Nazwa"></span>
+        <label asp-for="Name">Imię</label>
+        <input class="form-control" asp-for="Name" />
+        <span class="text-danger" asp-validation-for="Name"></span>
     </div>
 
     <div class="mb-3">
         <label asp-for="Email">E-mail</label>
         <input class="form-control" asp-for="Email" />
-        <span class="tet-danger" asp-validation-for="Email"></span>
+        <span class="text-danger" asp-validation-for="Email"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Telefon">Numer telefonu</label>
-        <input class="form-control" asp-for="Telefon" />
-        <span class="tet-danger" asp-validation-for="Telefon"></span>
+        <label asp-for="Phone">Numer telefonu</label>
+        <input class="form-control" asp-for="Phone" />
+        <span class="text-danger" asp-validation-for="Phone"></span>
     </div>
 
     <div class="mb-3">
-        <label asp-for="Dataur">Data urodzenia</label>
-        <input class="form-control" asp-for="Dataur" />
-        <span class="tet-danger" asp-validation-for="Dataur"></span>
+        <label asp-for="Birth">Data urodzenia</label>
+        <input class="form-control" asp-for="Birth" />
+        <span class="text-danger" asp-validation-for="Birth"></span>
     </div>
-    <div>
-        <label asp-for="Priority">Kategoria</label>
-        <div>
-            <span asp-validation-for="Priority" class="text-danger"></span>
-        </div>
-        <select class="form-control" asp-for="Priority" asp-items="@Html.GetEnumSelectList<Priority>()"></select>
-    </div>
-
     <button type="submit">Zapisz</button>
 </form>
