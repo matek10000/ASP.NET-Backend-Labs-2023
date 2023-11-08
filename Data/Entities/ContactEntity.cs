@@ -14,7 +14,7 @@ namespace Data.Entities
         [Column("id")]
         [Key]
         public int ContactId { get; set; }
-        [MaxLength(50)]
+        [MaxLength(100)]
         [Required]
         public string Name { get; set; }
         [Required]

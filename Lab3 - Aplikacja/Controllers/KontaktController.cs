@@ -32,7 +32,7 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new ContactEntity()); // Tworzenie nowej instancji modelu Kontakt
+            return View(new ContactEntity());
         }
 
         [HttpPost]
@@ -40,8 +40,8 @@ namespace Lab3___Aplikacja.Controllers
         {
             if (ModelState.IsValid)
             {
-                _contactService.Contacts.Add(model); // Dodanie modelu do bazy danych
-                _contactService.SaveChanges(); // Zapisanie zmian w bazie danych
+                _contactService.Contacts.Add(model);
+                _contactService.SaveChanges();
                 return RedirectToAction("Index");
             }
             else
@@ -62,19 +62,20 @@ namespace Lab3___Aplikacja.Controllers
         }
 
         [HttpPost]
-        public IActionResult Update(ContactEntity model)
+        public IActionResult Update(Kontakt model)
         {
             if (ModelState.IsValid)
             {
-                var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == model.ContactId);
+                var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == model.Id);
                 if (kontakt != null)
                 {
                     kontakt.Name = model.Name;
                     kontakt.Email = model.Email;
                     kontakt.Phone = model.Phone;
                     kontakt.Birth = model.Birth;
-                    _contactService.SaveChanges(); // Zapisz zmiany w bazie danych
-                    return RedirectToAction("Index"); // Przekierowanie po zaktualizowaniu danych
+
+                    _contactService.SaveChanges();
+                    return RedirectToAction("Index");
                 }
             }
             return View(model);
@@ -100,7 +101,7 @@ namespace Lab3___Aplikacja.Controllers
             if (kontakt != null)
             {
                 _contactService.Contacts.Remove(kontakt);
-                _contactService.SaveChanges(); // Zapisz zmiany w bazie danych
+                _contactService.SaveChanges();
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

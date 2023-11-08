@@ -19,8 +19,8 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Create()
         {
-            var model = new Product(); // Tworzenie nowego obiektu Produkt
-            return View(model); // Zwracanie widoku z modelem
+            var model = new Product();
+            return View(model);
         }
 
         [HttpPost]
@@ -59,7 +59,6 @@ namespace Lab3___Aplikacja.Controllers
 
                 if (produkt != null)
                 {
-                    // Zaktualizuj dane produktu
                     produkt.Nazwa = model.Nazwa;
                     produkt.Cena = model.Cena;
                     produkt.Producent = model.Producent;

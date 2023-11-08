@@ -11,10 +11,10 @@ namespace Lab3___Aplikacja.Models
         {
             return new ContactEntity()
             {
-                Name = model.Nazwa,
+                Name = model.Name,
                 Email = model.Email,
-                Birth = model.Dataur,
-                Phone = model.Telefon,
+                Birth = model.Birth,
+                Phone = model.Phone,
                 ContactId = model.Id
             };
         }
@@ -23,10 +23,10 @@ namespace Lab3___Aplikacja.Models
         {
             return new Kontakt()
             {
-                Nazwa = entity.Name,
+                Name = entity.Name,
                 Email = entity.Email,
-                Dataur = (DateTime)entity.Birth,
-                Telefon = entity.Phone,
+                Birth = (DateTime)entity.Birth,
+                Phone = entity.Phone,
                 Id = entity.ContactId
 
             };
