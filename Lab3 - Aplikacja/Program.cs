@@ -11,7 +11,7 @@ namespace Lab3___Aplikacja
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddDbContext<AppDbContext>();
+            builder.Services.AddDbContext<Data.AppDbContext>();
             builder.Services.AddTransient<IContactService, EFContactService>();
             var app = builder.Build();
 

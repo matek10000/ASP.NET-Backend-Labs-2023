@@ -21,8 +21,5 @@ namespace Data.Entities
         public string Email { get; set; }
         public string? Phone { get; set; }
         public DateTime? Birth { get; set; }
-
-        public List<String> Friends { get; set; }
-
     }
 }
