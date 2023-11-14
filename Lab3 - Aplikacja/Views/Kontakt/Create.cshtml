@@ -1,5 +1,5 @@
 ﻿
-@model Data.Entities.ContactEntity
+@model Kontakt
 @{
 }
 <h1>Utworzenie kontaktu</h1>
@@ -27,6 +27,11 @@
         <label asp-for="Birth">Data urodzenia</label>
         <input class="form-control" asp-for="Birth" />
         <span class="text-danger" asp-validation-for="Birth"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="OrganizationId">Organizacja</label>
+        <select class="form-control" asp-for="OrganizationId" asp-items=@Model.Organizations></select>
     </div>
     <button type="submit">Wyslij</button>
 </form>

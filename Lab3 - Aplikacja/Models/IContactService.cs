@@ -1,12 +1,15 @@
-﻿using Lab3___Aplikacja.Models;
+﻿using Data.Entities;
+using Lab3___Aplikacja.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Sqlite;
 public interface IContactService
 {
-    int Add(Kontakt book);
-    void Delete(int id);
-    void Update(Kontakt book);
+    public int Add(Kontakt book);
+    public void Delete(int id);
+    public void Update(Kontakt book);
     List<Kontakt> FindAll();
     Kontakt? FindById(int id);
+
+    List<OrganizationEntity> FindAllOrganizations();
 }

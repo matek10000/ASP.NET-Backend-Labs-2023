@@ -16,32 +16,40 @@ namespace Lab3___Aplikacja.Controllers
         static List<Kontakt> _kontakty = new List<Kontakt>();
         static int index = 1;
 
-        private readonly AppDbContext _contactService;
+        private readonly IContactService _contactService;
 
-        public KontaktController(AppDbContext context)
+        public KontaktController(IContactService contactService)
         {
-            _contactService = context;
+            _contactService = contactService;
         }
 
         public IActionResult Index()
         {
-            var kontakty = _contactService.Contacts.ToList();
+            var kontakty = _contactService.FindAll();
             return View(kontakty);
         }
 
         [HttpGet]
         public IActionResult Create()
         {
-            return View(new ContactEntity());
+            Kontakt model = new Kontakt();
+            model.Organizations = _contactService.FindAllOrganizations()
+                .Select(oe => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
+                {
+                    Text = oe.Name,
+                    Value = oe.Id.ToString(),
+
+                }
+                ).ToList();
+            return View(model);
         }
 
         [HttpPost]
-        public IActionResult Create(ContactEntity model)
+        public IActionResult Create(Kontakt model)
         {
             if (ModelState.IsValid)
             {
-                _contactService.Contacts.Add(model);
-                _contactService.SaveChanges();
+                _contactService.Add(model);
                 return RedirectToAction("Index");
             }
             else
@@ -53,7 +61,7 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Update(int id)
         {
-            var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == id);
+            var kontakt = _contactService.FindById(id);
             if (kontakt != null)
             {
                 return View(kontakt);
@@ -66,19 +74,10 @@ namespace Lab3___Aplikacja.Controllers
         {
             if (ModelState.IsValid)
             {
-                var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == model.Id);
-                if (kontakt != null)
-                {
-                    kontakt.Name = model.Name;
-                    kontakt.Email = model.Email;
-                    kontakt.Phone = model.Phone;
-                    kontakt.Birth = model.Birth;
-
-                    _contactService.SaveChanges();
-                    return RedirectToAction("Index");
-                }
+                _contactService.Update(model);
+                return RedirectToAction("Index");
             }
-            return View(model);
+            return View();
         }
 
 
@@ -86,7 +85,7 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == id);
+            var kontakt = _contactService.FindById(id);
             if (kontakt != null)
             {
                 return View(kontakt);
@@ -97,11 +96,10 @@ namespace Lab3___Aplikacja.Controllers
         [HttpGet]
         public IActionResult Delete(int id)
         {
-            var kontakt = _contactService.Contacts.FirstOrDefault(k => k.ContactId == id);
+            var kontakt = _contactService.FindById(id);
             if (kontakt != null)
             {
-                _contactService.Contacts.Remove(kontakt);
-                _contactService.SaveChanges();
+                _contactService.Delete(kontakt.Id);
                 return RedirectToAction("Index");
             }
             return RedirectToAction("Index");

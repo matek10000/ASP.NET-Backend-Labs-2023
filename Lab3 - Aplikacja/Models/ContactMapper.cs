@@ -15,7 +15,8 @@ namespace Lab3___Aplikacja.Models
                 Email = model.Email,
                 Birth = model.Birth,
                 Phone = model.Phone,
-                ContactId = model.Id
+                ContactId = model.Id,
+                OrganizationId = (int)model.OrganizationId
             };
         }
 
@@ -27,7 +28,8 @@ namespace Lab3___Aplikacja.Models
                 Email = entity.Email,
                 Birth = (DateTime)entity.Birth,
                 Phone = entity.Phone,
-                Id = entity.ContactId
+                Id = entity.ContactId,
+                OrganizationId = entity.OrganizationId
 
             };
         }

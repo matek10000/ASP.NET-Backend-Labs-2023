@@ -3,6 +3,8 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Sqlite;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Lab3___Aplikacja.Models
 {
@@ -26,5 +28,10 @@ namespace Lab3___Aplikacja.Models
 
         [Display(Name = "Data urodzenia:")]
         public DateTime Birth { get; set; }
+
+        public int? OrganizationId { get; set; }
+
+        [ValidateNever]
+        public List<SelectListItem> Organizations { get; set; }
     }
 }

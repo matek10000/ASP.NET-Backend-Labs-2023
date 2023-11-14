@@ -17,7 +17,6 @@ namespace Lab3___Aplikacja.Models
 
         public int Add(Kontakt contact)
         {
-            
             var entity = _context.Contacts.Add(ContactMapper.ToEntity(contact));
             int id = entity.Entity.ContactId;
             _context.SaveChanges();
@@ -50,6 +49,11 @@ namespace Lab3___Aplikacja.Models
         {
             ContactEntity? find = _context.Contacts.Find(id);
             return find == null ? null : ContactMapper.FromEntity(find);
+        }
+
+        public List<OrganizationEntity> FindAllOrganizations()
+        {
+            return _context.Organizations.ToList();
         }
     }
 }
