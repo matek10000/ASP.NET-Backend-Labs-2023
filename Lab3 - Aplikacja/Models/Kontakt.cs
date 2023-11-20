@@ -29,6 +29,7 @@ namespace Lab3___Aplikacja.Models
         [Display(Name = "Data urodzenia:")]
         public DateTime Birth { get; set; }
 
+        [HiddenInput]
         public int? OrganizationId { get; set; }
 
         [ValidateNever]

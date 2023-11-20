@@ -25,7 +25,7 @@ namespace Data
         {
 
             modelBuilder.Entity<ContactEntity>()
-                .HasOne(c => c.Organization)
+                .HasOne(c => c.Organizations)
                 .WithMany(o => o.Contacts)
                 .HasForeignKey(c => c.OrganizationId);
 
@@ -39,7 +39,8 @@ namespace Data
                 }
                 );
 
-            modelBuilder.Entity<ContactEntity>().HasData(
+            modelBuilder.Entity<ContactEntity>()
+                .HasData(
                 new ContactEntity() {
                     ContactId = 1,
                     Name = "Adam",
@@ -56,10 +57,12 @@ namespace Data
                     OrganizationId = 1}
         );
             modelBuilder.Entity<OrganizationEntity>()
-                .OwnsOne(o => o.Adress)
+                .OwnsOne(o => o.Address)
                 .HasData(
-                new {OrganizationEntityId = 1, City = "Kraków", Street = "Św. Filipa 17", PostalCode = "31-150"}
+                new { OrganizationEntityId = 1, City = "Kraków", Street = "Św. Filipa 17", PostalCode = "31-150" }
                 );
+
+
         }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

@@ -1,5 +1,5 @@
-﻿
-@model Kontakt
+﻿@model Kontakt
+
 @{
 }
 <h1>Utworzenie kontaktu</h1>
@@ -33,5 +33,6 @@
         <label asp-for="OrganizationId">Organizacja</label>
         <select class="form-control" asp-for="OrganizationId" asp-items=@Model.Organizations></select>
     </div>
+
     <button type="submit">Wyslij</button>
 </form>

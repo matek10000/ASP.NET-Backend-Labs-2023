@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Sqlite;
-
+using Lab3___Aplikacja.Models;
 
 namespace Lab3___Aplikacja
 {
@@ -23,6 +23,7 @@ namespace Lab3___Aplikacja
         {
             services.AddDbContext<Data.AppDbContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddScoped<IContactService, MemoryContactService>();
 
             services.AddControllersWithViews();
         }

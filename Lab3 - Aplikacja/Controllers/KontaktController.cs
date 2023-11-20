@@ -33,7 +33,8 @@ namespace Lab3___Aplikacja.Controllers
         public IActionResult Create()
         {
             Kontakt model = new Kontakt();
-            model.Organizations = _contactService.FindAllOrganizations()
+            model.Organizations = _contactService
+                .FindAllOrganizations()
                 .Select(oe => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
                 {
                     Text = oe.Name,
@@ -62,6 +63,17 @@ namespace Lab3___Aplikacja.Controllers
         public IActionResult Update(int id)
         {
             var kontakt = _contactService.FindById(id);
+
+            kontakt.Organizations = _contactService
+                .FindAllOrganizations()
+                .Select(oe => new Microsoft.AspNetCore.Mvc.Rendering.SelectListItem()
+                {
+                    Text = oe.Name,
+                    Value = oe.Id.ToString(),
+
+                }
+                ).ToList();
+
             if (kontakt != null)
             {
                 return View(kontakt);

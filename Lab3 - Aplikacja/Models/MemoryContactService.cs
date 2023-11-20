@@ -1,4 +1,5 @@
-﻿using Data.Entities;
+﻿using Data;
+using Data.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Sqlite;
@@ -7,7 +8,16 @@ namespace Lab3___Aplikacja.Models
 {
     public class MemoryContactService : IContactService
     {
+        private readonly AppDbContext _dbContext;
+        private readonly List<Kontakt> _kontakty;
         private Dictionary<int, Kontakt> _items = new Dictionary<int, Kontakt>();
+
+        public MemoryContactService(AppDbContext dbContext)
+        {
+            _kontakty = new List<Kontakt>();
+            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
+        }
+
         public int Add(Kontakt item)
         {
             int id = _items.Keys.Count != 0 ? _items.Keys.Max() : 0;
@@ -38,7 +48,8 @@ namespace Lab3___Aplikacja.Models
 
         public List<OrganizationEntity> FindAllOrganizations()
         {
-            throw new NotImplementedException();
+            return _dbContext.Organizations.ToList();
         }
+
     }
 }

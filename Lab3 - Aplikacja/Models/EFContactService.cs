@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Sqlite;
 
 namespace Lab3___Aplikacja.Models
 {
-    public class EFContactService : MemoryContactService
+    public class EFContactService : IContactService
     {
         private readonly AppDbContext _context;
 

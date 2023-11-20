@@ -1,4 +1,4 @@
-﻿@model List<Data.Entities.ContactEntity>
+﻿@model List<Lab3___Aplikacja.Models.Kontakt>
 
 
 <div>
@@ -28,9 +28,9 @@
                     @item.Email
                 </td>
                 <td>
-                        <a class="btn btn-outline-primary" asp-action="Update" asp-controller="Kontakt" asp-route-id="@item.ContactId">Edytuj</a>
-                    <a class="btn btn-outline-info" asp-action="Details" asp-controller="Kontakt" asp-route-id="@item.ContactId">Szczegóły</a>
-                    <a class="btn btn-outline-danger" asp-action="Delete" asp-controller="Kontakt" asp-route-id="@item.ContactId">Usuń</a>
+                        <a class="btn btn-outline-primary" asp-action="Update" asp-controller="Kontakt" asp-route-id="@item.Id">Edytuj</a>
+                    <a class="btn btn-outline-info" asp-action="Details" asp-controller="Kontakt" asp-route-id="@item.Id">Szczegóły</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-controller="Kontakt" asp-route-id="@item.Id">Usuń</a>
                 </td>
             </tr>
         }

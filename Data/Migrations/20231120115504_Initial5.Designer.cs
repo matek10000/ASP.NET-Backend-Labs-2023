@@ -3,6 +3,7 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231120115504_Initial5")]
+    partial class Initial5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -74,6 +77,9 @@ namespace Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("AddressId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -90,6 +96,7 @@ namespace Data.Migrations
                         new
                         {
                             Id = 1,
+                            AddressId = 0,
                             Description = "Uczelnia wyższa w Krakowie",
                             Name = "WSEI"
                         });
@@ -97,13 +104,13 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.Entities.ContactEntity", b =>
                 {
-                    b.HasOne("Data.Entities.OrganizationEntity", "Organizations")
+                    b.HasOne("Data.Entities.OrganizationEntity", "Organization")
                         .WithMany("Contacts")
                         .HasForeignKey("OrganizationId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Organizations");
+                    b.Navigation("Organization");
                 });
 
             modelBuilder.Entity("Data.Entities.OrganizationEntity", b =>
