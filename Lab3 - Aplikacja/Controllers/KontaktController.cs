@@ -8,9 +8,11 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.Sqlite;
 using Data;
 using Data.Entities;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Lab3___Aplikacja.Controllers
 {
+    [Authorize]
     public class KontaktController : Controller
     {
         static List<Kontakt> _kontakty = new List<Kontakt>();
@@ -23,6 +25,7 @@ namespace Lab3___Aplikacja.Controllers
             _contactService = contactService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             var kontakty = _contactService.FindAll();

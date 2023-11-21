@@ -1,4 +1,6 @@
 ﻿using Data.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Data
 {
-    public class AppDbContext : DbContext
+    public class AppDbContext : IdentityDbContext<IdentityUser>
     {
         private string DbPath { get; set; }
         public AppDbContext()
@@ -23,6 +25,50 @@ namespace Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+            PasswordHasher<IdentityUser> ph = new PasswordHasher<IdentityUser>();
+
+            //Tworzenie uzytkownika
+            var user = new IdentityUser()
+            {
+                Id = Guid.NewGuid().ToString(),
+                UserName = "mateusz",
+                Email = "mateusz.dybas@gmail.com",
+                EmailConfirmed = true,
+            };
+            //Hashowanie hasla
+            user.PasswordHash = ph.HashPassword(user, "Start123!");
+
+            //Prypisanie uzytkownika do Buildera
+            modelBuilder.Entity<IdentityUser>()
+                .HasData(
+                    user
+                );
+
+            //Tworzenie roli
+            var adminRole = new IdentityRole()
+            {
+                Id = Guid.NewGuid().ToString(),
+                Name = "admin",
+                NormalizedName = "ADMIN"
+            };
+
+            //Przypisanie roli do Buildera
+            adminRole.ConcurrencyStamp = adminRole.Id;
+            modelBuilder.Entity<IdentityRole>()
+                .HasData(
+                    adminRole
+                );
+
+            // Prypisanie roli do uzytkownika
+            modelBuilder.Entity<IdentityUserRole<string>>()
+                .HasData(
+                    new IdentityUserRole<string>()
+                    {
+                        RoleId = adminRole.Id,
+                        UserId = user.Id
+                    }
+                );
 
             modelBuilder.Entity<ContactEntity>()
                 .HasOne(c => c.Organizations)
