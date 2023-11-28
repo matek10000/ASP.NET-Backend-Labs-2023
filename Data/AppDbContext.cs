@@ -35,7 +35,8 @@ namespace Data
                 UserName = "mateusz",
                 Email = "mateusz.dybas@gmail.com",
                 EmailConfirmed = true,
-                NormalizedEmail = "MATEUSZ.DYBAS@GMAIL.COM"
+                NormalizedEmail = "MATEUSZ.DYBAS@GMAIL.COM",
+                NormalizedUserName = "MATEUSZ"
             };
             //Hashowanie hasla
             user.PasswordHash = ph.HashPassword(user, "Start123!");

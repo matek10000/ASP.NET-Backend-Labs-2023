@@ -62,6 +62,22 @@ namespace Lab3___Aplikacja.Controllers
             }
         }
 
+        public IActionResult CreateApi()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CreateApi(Kontakt model)
+        {
+            if (ModelState.IsValid)
+            {
+                _contactService.Add(model);
+                return RedirectToAction("Index");
+            }
+            return View(model);
+        }
+
         [HttpGet]
         public IActionResult Update(int id)
         {
