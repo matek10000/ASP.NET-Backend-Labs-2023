@@ -51,5 +51,9 @@ namespace Lab3___Aplikacja.Models
             return _dbContext.Organizations.ToList();
         }
 
+        public PagingList<Kontakt> FindPage(int page, int size)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

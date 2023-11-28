@@ -1,0 +1,84 @@
+﻿@model PagingList<Kontakt>
+
+
+<div>
+    <center>
+        <a class="btn btn-primary" asp-action="Create" asp-controller="Kontakt">Utwórz kontakt</a>
+        <a class="btn btn-primary" asp-action="CreateApi" asp-controller="Kontakt">Dodaj kontakt API</a>
+    </center>
+</div>
+@if (Model.Data.Count() > 0) {
+<br />
+<h1>Lista kontaktów</h1>
+<div>
+    <table class="table">
+        <tr>
+            <th>
+                Nazwa
+            </th>
+            <th>
+                Data urodzin
+            </th>
+        </tr>
+        @foreach (var item in @Model.Data)
+        {
+            <tr>
+                <td>
+                    @item.Name
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary" asp-action="Update" asp-controller="Kontakt" asp-route-id="@item.Id">Edytuj</a>
+                    <a class="btn btn-outline-info" asp-action="Details" asp-controller="Kontakt" asp-route-id="@item.Id">Szczegóły</a>
+                    <a class="btn btn-outline-danger" asp-action="Delete" asp-controller="Kontakt" asp-route-id="@item.Id">Usuń</a>
+                </td>
+            </tr>
+        }
+    </table>
+        <nav aria-label="Books page navigation">
+            <ul class="pagination">
+                @if (Model.IsPrevious)
+                {
+                    <li class="page-item">
+                        <a class="page-link"
+                           asp-controller="Contact"
+                           asp-action="PagedIndex"
+                           asp-route-page="@(Model.PageNumber - 1)"
+                           asp-route-size="5">
+                            Poprzednia
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link">Poprzednia</a>
+                    </li>
+                }
+                <li class="page-item disabled">
+                    <a class="page-link">@Model.PageNumber</a>
+                </li>
+                @if (Model.IsNext)
+                {
+                    <li class="page-item">
+                        <a class="page-link"
+                           asp-controller="Contact"
+                           asp-action="PagedIndex"
+                           asp-route-page="@(Model.PageNumber + 1)"
+                           asp-route-size="2">
+                            Następna
+                        </a>
+                    </li>
+                }
+                else
+                {
+                    <li class="page-item disabled">
+                        <a class="page-link">Następna</a>
+                    </li>
+                }
+            </ul>
+        </nav>
+</div>
+}

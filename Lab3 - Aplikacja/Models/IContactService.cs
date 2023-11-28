@@ -10,6 +10,6 @@ public interface IContactService
     public void Update(Kontakt book);
     List<Kontakt> FindAll();
     Kontakt? FindById(int id);
-
     List<OrganizationEntity> FindAllOrganizations();
+    PagingList<Kontakt> FindPage(int page, int size);
 }
