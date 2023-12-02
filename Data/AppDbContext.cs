@@ -102,7 +102,25 @@ namespace Data
                     Email = "ewa@wsei.edu.pl",
                     Phone = "293443823478",
                     Birth = new DateTime(1999, 8, 10),
-                    OrganizationId = 1}
+                    OrganizationId = 1},
+                new ContactEntity()
+                {
+                    ContactId = 3,
+                    Name = "Marek",
+                    Email = "Marek@wsei.edu.pl",
+                    Phone = "123647920",
+                    Birth = new DateTime(2002, 12, 7),
+                    OrganizationId = 1
+                },
+                new ContactEntity()
+                {
+                    ContactId = 4,
+                    Name = "Julia",
+                    Email = "Jula@wsei.edu.pl",
+                    Phone = "696942021",
+                    Birth = new DateTime(2006, 3, 12),
+                    OrganizationId = 1
+                }
         );
             modelBuilder.Entity<OrganizationEntity>()
                 .OwnsOne(o => o.Address)

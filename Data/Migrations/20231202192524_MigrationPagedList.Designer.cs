@@ -3,6 +3,7 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231202192524_MigrationPagedList")]
+    partial class MigrationPagedList
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -65,24 +68,6 @@ namespace Data.Migrations
                             Name = "Ewa",
                             OrganizationId = 1,
                             Phone = "293443823478"
-                        },
-                        new
-                        {
-                            ContactId = 3,
-                            Birth = new DateTime(2002, 12, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Marek@wsei.edu.pl",
-                            Name = "Marek",
-                            OrganizationId = 1,
-                            Phone = "123647920"
-                        },
-                        new
-                        {
-                            ContactId = 4,
-                            Birth = new DateTime(2006, 3, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Email = "Jula@wsei.edu.pl",
-                            Name = "Julia",
-                            OrganizationId = 1,
-                            Phone = "696942021"
                         });
                 });
 
@@ -141,8 +126,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "81ea5466-a1dc-4440-ae51-d44e01ca7976",
-                            ConcurrencyStamp = "81ea5466-a1dc-4440-ae51-d44e01ca7976",
+                            Id = "a1f17228-d490-443a-892a-317b143c123a",
+                            ConcurrencyStamp = "a1f17228-d490-443a-892a-317b143c123a",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -237,17 +222,17 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "325fba42-5a62-42fd-a675-339be123b77f",
+                            Id = "384367ca-2cdb-4be7-a4fe-84e3a993277e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a5ed6c82-737c-473f-ab73-b4af17cb1352",
+                            ConcurrencyStamp = "cd9dda96-017a-4878-bad3-a5350ac8a026",
                             Email = "mateusz.dybas@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATEUSZ.DYBAS@GMAIL.COM",
                             NormalizedUserName = "MATEUSZ",
-                            PasswordHash = "AQAAAAEAACcQAAAAED38cHQ99q5xknpMV5DmZvBaHLv8SWr9FHDZC0/Q0gFFGpItegilKdldSGazWGDmRA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEH/xqZjXSsvYxoUa94lDJwy/FStCD0cJpXnUChPKDBQ1IpZVBSZm08KoQ67qGZ35dA==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "57832205-67ef-43cd-9414-2da15138340f",
+                            SecurityStamp = "fa5625ce-dabe-45f6-b76a-1b077fd8a873",
                             TwoFactorEnabled = false,
                             UserName = "mateusz"
                         });
@@ -315,8 +300,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "325fba42-5a62-42fd-a675-339be123b77f",
-                            RoleId = "81ea5466-a1dc-4440-ae51-d44e01ca7976"
+                            UserId = "384367ca-2cdb-4be7-a4fe-84e3a993277e",
+                            RoleId = "a1f17228-d490-443a-892a-317b143c123a"
                         });
                 });
 

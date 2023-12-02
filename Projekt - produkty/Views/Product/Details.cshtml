@@ -1,0 +1,20 @@
+﻿@model Projekt___produkty.Models.Product
+
+<h2>Szczegóły produktu</h2>
+<dl>
+    <dt>ID</dt>
+    <dd>@Model.Id</dd>
+    <dt>Nazwa</dt>
+    <dd>@Model.Name</dd>
+    <dt>Cena</dt>
+    <dd>@Model.Price</dd>
+    <dt>Producent</dt>
+    <dd>@Model.Manufacturer</dd>
+    <dt>Data produkcji</dt>
+    <dd>@Model.ProductionDate</dd>
+    <dt>Opis</dt>
+    <dd>@Model.Description</dd>
+</dl>
+<p>
+    <a asp-action="Index">Powrót do listy produktów</a>
+</p>

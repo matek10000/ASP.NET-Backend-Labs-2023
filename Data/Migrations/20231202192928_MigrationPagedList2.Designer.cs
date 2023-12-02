@@ -3,6 +3,7 @@ using System;
 using Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20231202192928_MigrationPagedList2")]
+    partial class MigrationPagedList2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.13");
@@ -141,8 +144,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "81ea5466-a1dc-4440-ae51-d44e01ca7976",
-                            ConcurrencyStamp = "81ea5466-a1dc-4440-ae51-d44e01ca7976",
+                            Id = "2c03c78d-65a1-4548-be17-47e1897c0f68",
+                            ConcurrencyStamp = "2c03c78d-65a1-4548-be17-47e1897c0f68",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -237,17 +240,17 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "325fba42-5a62-42fd-a675-339be123b77f",
+                            Id = "7cec9b01-af14-4986-9e3a-fcac12bebf72",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "a5ed6c82-737c-473f-ab73-b4af17cb1352",
+                            ConcurrencyStamp = "d8a40175-1e88-4280-a680-4712560752ed",
                             Email = "mateusz.dybas@gmail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "MATEUSZ.DYBAS@GMAIL.COM",
                             NormalizedUserName = "MATEUSZ",
-                            PasswordHash = "AQAAAAEAACcQAAAAED38cHQ99q5xknpMV5DmZvBaHLv8SWr9FHDZC0/Q0gFFGpItegilKdldSGazWGDmRA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEPeKLayEIf/FojEQNnmmxi9Y8HLoQnq37FPKrdns+2M6WJJ9lNDAGLq3861q2wfTjw==",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "57832205-67ef-43cd-9414-2da15138340f",
+                            SecurityStamp = "9db83026-49d9-463b-9f95-10eeabf7a897",
                             TwoFactorEnabled = false,
                             UserName = "mateusz"
                         });
@@ -315,8 +318,8 @@ namespace Data.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "325fba42-5a62-42fd-a675-339be123b77f",
-                            RoleId = "81ea5466-a1dc-4440-ae51-d44e01ca7976"
+                            UserId = "7cec9b01-af14-4986-9e3a-fcac12bebf72",
+                            RoleId = "2c03c78d-65a1-4548-be17-47e1897c0f68"
                         });
                 });
 

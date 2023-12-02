@@ -1,0 +1,13 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Obsługa produktów";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Witaj w Obsłudze Produktów</h1>
+    <p>Projekt wykonany przez: Mateusz Dybaś</p>
+
+    <!-- Przycisk przekierowujący do obsługi produktów -->
+    <a asp-controller="Product" asp-action="Index" class="btn btn-primary">Przejdź do obsługi produktów</a>
+</div>

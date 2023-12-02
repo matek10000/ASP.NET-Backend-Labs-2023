@@ -43,10 +43,10 @@
                 {
                     <li class="page-item">
                         <a class="page-link"
-                           asp-controller="Contact"
+                           asp-controller="Kontakt"
                            asp-action="PagedIndex"
                            asp-route-page="@(Model.PageNumber - 1)"
-                           asp-route-size="5">
+                           asp-route-size="2">
                             Poprzednia
                         </a>
                     </li>
@@ -64,7 +64,7 @@
                 {
                     <li class="page-item">
                         <a class="page-link"
-                           asp-controller="Contact"
+                           asp-controller="Kontakt"
                            asp-action="PagedIndex"
                            asp-route-page="@(Model.PageNumber + 1)"
                            asp-route-size="2">

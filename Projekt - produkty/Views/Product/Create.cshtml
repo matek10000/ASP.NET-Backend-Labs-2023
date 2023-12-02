@@ -1,0 +1,36 @@
+﻿@model Projekt___produkty.Models.Product
+
+<h1>Utworzenie produktu</h1>
+<form asp-controller="Product" asp-action="Create" method="post">
+    <div class="mb-3">
+        <label asp-for="Name">Nazwa</label>
+        <input class="form-control" asp-for="Name" />
+        <span class="text-danger" asp-validation-for="Name"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Price">Cena</label>
+        <input class="form-control" asp-for="Price" />
+        <span class="text-danger" asp-validation-for="Price"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Manufacturer">Producent</label>
+        <input class="form-control" asp-for="Manufacturer" />
+        <span class="text-danger" asp-validation-for="Manufacturer"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="ProductionDate">Data produkcji</label>
+        <input class="form-control" asp-for="ProductionDate" type="date" />
+        <span class="text-danger" asp-validation-for="ProductionDate"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Description">Opis</label>
+        <textarea class="form-control" asp-for="Description"></textarea>
+        <span class="text-danger" asp-validation-for="Description"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Utwórz</button>
+</form>
