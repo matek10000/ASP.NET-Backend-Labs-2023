@@ -127,7 +127,7 @@ namespace Lab3___Aplikacja.Controllers
             {
                 return View(kontakt);
             }
-            return RedirectToAction("Index");
+            return NotFound();
         }
 
         [HttpGet]

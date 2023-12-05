@@ -12,11 +12,12 @@ namespace Lab3___Aplikacja.Models
         private readonly List<Kontakt> _kontakty;
         private Dictionary<int, Kontakt> _items = new Dictionary<int, Kontakt>();
 
-        public MemoryContactService(AppDbContext dbContext)
+        public MemoryContactService()
         {
             _kontakty = new List<Kontakt>();
-            _dbContext = dbContext ?? throw new ArgumentNullException(nameof(dbContext));
         }
+
+
 
         public int Add(Kontakt item)
         {
@@ -38,12 +39,16 @@ namespace Lab3___Aplikacja.Models
 
         public List<Kontakt> FindAll()
         {
-            return _items.Values.ToList();
+            return new List<Kontakt>() { new Kontakt() { Id = 1 } };
         }
 
         public Kontakt? FindById(int id)
         {
-            return _items[id];
+            if (_items.ContainsKey(id))
+            {
+                return _items[id];
+            }
+            return null;
         }
 
         public List<OrganizationEntity> FindAllOrganizations()
