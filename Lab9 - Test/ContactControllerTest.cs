@@ -44,8 +44,8 @@ namespace Lab9___Test
         [Fact]
         public void DetailsTestForNonExistingContact()
         {
-            var result = _controller.Details(3);
-            Assert.IsType<ViewResult>(result);
+            var result = _controller.Details(5);
+            Assert.IsType<NotFoundResult>(result);
         }
 
     }
